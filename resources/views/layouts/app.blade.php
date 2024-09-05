@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    {{-- <link href="https://unpkg.com/@tabler/core@latest/dist/css/tabler.min.css" rel="stylesheet"> --}}
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -50,17 +52,28 @@
                             @endif
                         @else
                             @canany(['create-role', 'edit-role', 'delete-role'])
-                                <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Roles</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('roles.index') }}">Manage Roles</a>
+                            </li>
+                                {{-- <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Roles</a></li> --}}
                             @endcanany
                             @canany(['create-user', 'edit-user', 'delete-user'])
-                                <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
+                            </li>
                             @endcanany
                             @canany(['create-product', 'edit-product', 'delete-product'])
-                                <li><a class="nav-link" href="{{ route('products.index') }}">Manage Products</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.index') }}">Manage Products</a>
+                            </li>
+                                
                             @endcanany
                             @can(['view-product'])
-                                <li><a class="nav-link" href="{{ route('products.index') }}">View Products</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.index') }}">View Products</a>
+                            </li>
                             @endcan
+                            
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -95,7 +108,7 @@
                             </div>
                         @endif
 
-                        <h3 class="text-center mt-3 mb-3">Laravel 11 Spatie User Roles and Permissions </h3>
+                        {{-- <h3 class="text-center mt-3 mb-3">Laravel 11 Spatie User Roles and Permissions </h3> --}}
                         @yield('content')
                         
                         <div class="row justify-content-center text-center mt-3">
@@ -113,5 +126,11 @@
             </div>
         </main>
     </div>
+    @stack('page-libraries')
+    <!-- Tabler Core -->
+    <script src="{{ asset('dist/js/tabler.min.js') }}" defer></script>
+    <script src="{{ asset('dist/js/demo.min.js') }}" defer></script>
+    {{-- - Page Scripts - --}}
+    @stack('page-scripts')
 </body>
 </html>

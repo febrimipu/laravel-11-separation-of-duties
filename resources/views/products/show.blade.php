@@ -34,5 +34,6 @@
         </div>
     </div>    
 </div>
+@stack('page-scripts')
     
 @endsection
